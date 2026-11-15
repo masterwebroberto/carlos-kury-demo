@@ -1,0 +1,13 @@
+.privacy-document { width: min(100%, 1000px); margin-inline: auto; padding: 64px var(--page-gutter); }
+.privacy-document > header { display: grid; gap: 16px; margin-bottom: 40px; }
+.privacy-document h1 { font: var(--font-h1); color: var(--color-brand-gold); overflow-wrap: anywhere; }
+.privacy-document h2 { font: var(--font-h3); color: var(--color-brand-gold); margin-bottom: 16px; }
+.privacy-document section { padding-block: 24px; border-top: 1px solid var(--color-border); }
+.privacy-document p + p { margin-top: 16px; }
+.privacy-document p, .privacy-document li { color: var(--color-text-muted); }
+.privacy-document ul { list-style: disc; padding-left: 24px; display: grid; gap: 8px; }
+.privacy-document a { color: var(--color-brand-gold); text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.privacy-document a:hover { color: var(--color-text); }
+.privacy-draft { padding: 24px; border: 1px solid var(--color-brand-gold); border-radius: var(--radius-md); background: var(--color-bg-surface); }
+.privacy-pending { color: var(--color-text) !important; border-left: 2px solid var(--color-brand-gold); padding-left: 16px; }
+@media (max-width: 767px) { .privacy-document { padding: 40px 24px; } .privacy-document h1 { font: var(--font-h2); } .privacy-draft { padding: 16px; } }
