@@ -339,3 +339,16 @@ html:has(.video-modal[open]) { scrollbar-gutter: stable; }
 
 /* Aviso visible de la demo, compatible con el encabezado fijo. */
 .demo-notice { position: relative; z-index: 2; padding: 12px 20px; background: #fff0b3; color: #241b00; text-align: center; font: 600 14px/1.5 sans-serif; }
+
+/* Accesos flotantes: una columna con separación y zonas seguras. */
+body { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+.whatsapp-float { position: fixed; right: max(24px, env(safe-area-inset-right, 0px)); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 10; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #25d366; box-shadow: 0 4px 16px rgb(0 0 0 / .25); transition: transform 180ms ease, box-shadow 180ms ease; }
+.back-top { right: max(24px, env(safe-area-inset-right, 0px)); bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgb(0 0 0 / .35); }
+}
+.whatsapp-float:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float { transition: none; }
+  .whatsapp-float:hover { transform: none; }
+}
