@@ -1,7 +1,7 @@
 /* Activate only after the owner supplies the endpoint AND approves published privacy copy. */
 (async () => {
   // Production: only configure with the artist's endpoint and approved privacy notice.
-  const config = Object.freeze({ endpoint: '', privacyApproved: false, privacyUrl: '' });
+  const config = Object.freeze({ endpoint: 'https://formspree.io/f/xppdzloo', privacyApproved: false, privacyUrl: '' });
   const form = document.querySelector('#contact-form');
   if (!form) return;
   const fields = [...form.querySelectorAll('[data-validate]')];

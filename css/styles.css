@@ -25,7 +25,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button--secondary { border-color: var(--color-brand-gold); color: var(--color-brand-gold); }
 .button--secondary:hover { background: var(--color-bg-elevated); }
 .button:active { transform: translateY(1px); }
-.socials { display: flex; align-items: center; gap: 16px; }
+/* Reflejo reservado a las llamadas principales, con pausa entre pasadas. */
+.button--shine { position: relative; overflow: hidden; isolation: isolate; }
+.button--shine::after { content: ''; position: absolute; inset: -50% auto -50% -60%; width: 45%; background: linear-gradient(100deg, transparent, rgb(255 248 224 / .55), rgb(255 255 255 / .65), transparent); transform: translateX(0) skewX(-18deg); opacity: 0; pointer-events: none; animation: cta-light-sweep 4.5s ease-in-out infinite; }
+@keyframes cta-light-sweep {
+  0%, 65% { transform: translateX(0) skewX(-18deg); opacity: 0; }
+  68% { opacity: 1; }
+  92% { transform: translateX(400%) skewX(-18deg); opacity: 1; }
+  93%, 100% { transform: translateX(400%) skewX(-18deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button--shine::after { display: none; animation: none; }
+}
+.socials { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .socials__item { display: flex; align-items: center; justify-content: center; flex: 0 0 24px; }
 /* Cabecera fija, idénticos destinos en escritorio y móvil */
 .header { position: fixed; inset: 0 0 auto; z-index: 20; background: var(--color-bg-surface); }
@@ -51,6 +63,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero__actions { display: flex; gap: 16px; width: 100%; }
 /* Carruseles: scroll nativo y controles progresivos */
 .artist-carousel { position: relative; padding-block: 72px; }
+.artist-carousel-title { padding: 48px var(--page-gutter) 0; color: var(--color-brand-gold); font-size: clamp(32px, 4.5vw, 64px); line-height: 1.1; letter-spacing: .03em; }
 .artist-carousel__track { display: flex; gap: 24px; overflow-x: auto; padding-inline: var(--page-gutter); scroll-snap-type: x mandatory; scroll-padding-inline: var(--page-gutter); scrollbar-width: none; }
 .artist-carousel__track::-webkit-scrollbar { display: none; }
 .artist-carousel__slide { flex: 0 0 380px; height: 480px; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; scroll-snap-align: start; }
@@ -129,12 +142,12 @@ html:has(.lightbox[open]) { scrollbar-gutter: stable; }
 .video-preview__play { position: absolute; }
 .video-preview:hover { outline: 2px solid var(--color-brand-gold); }
 .channels { display: flex; flex-direction: column; gap: 32px; background: #fff; color: #1a1411; color-scheme: light; }
-.channels__heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+.channels__heading { text-align: left; }
 .channels__eyebrow { margin-bottom: 16px; font: var(--font-label); letter-spacing: .18em; text-transform: uppercase; color: #77551f; }
 .channels h2 { font-size: clamp(40px, 5vw, 72px); line-height: 1.08; letter-spacing: -.05em; }
 .channels h2::after { content: ''; display: block; width: 72px; height: 3px; margin-top: 24px; background: var(--color-brand-gold); }
-.channels__intro { max-width: 360px; color: #59534c; }
-.channels__grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
+.channels__intro { max-width: 480px; margin-top: 24px; color: #59534c; }
+.channels__grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
 .channel-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; min-width: 0; padding: 28px 24px; background: #fff; color: #1a1411; border: 1px solid #ded8ce; border-radius: var(--radius-md); font: var(--font-h3); transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease; }
 .channel-card > img, .channel-card > svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; background: #241c17; flex-shrink: 0; }
 .channel-card__copy { display: flex; flex-direction: column; gap: 6px; }
@@ -239,7 +252,6 @@ html:has(.lightbox[open]) { scrollbar-gutter: stable; }
   .header__navigation > .socials { display: flex; grid-column: 2; grid-row: 1; justify-self: end; gap: 16px; }
 }
 @media (max-width: 767px) {
-  .channels__heading { flex-direction: column; align-items: flex-start; gap: 24px; }
   .channels__grid { gap: 12px; }
   .channel-card { align-items: flex-start; justify-content: flex-start; gap: 24px; padding: 20px 14px; text-align: left; font-size: 18px; line-height: 24px; }
   .channel-card span { max-width: none; }
